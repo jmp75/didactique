@@ -1,4 +1,4 @@
-
+import sys
 
 from cffi import FFI
 mylib_ffi = FFI()
@@ -17,7 +17,10 @@ def load_api_from_file():
         mylib_ffi.cdef(f_headers.read())
 
     # native_lib_path = os.path.join(dir_path, '..', '..', 'native_lib', 'native.dll')
-    native_lib_path = os.path.join(dir_path, '..', '..', 'native_lib/x64/Debug/native.dll')
+    if sys.platform == 'windows':
+        native_lib_path = os.path.join(dir_path, '..', '..', 'native_lib/x64/Debug/native.dll')
+    else:
+        native_lib_path = os.path.join(dir_path, '..', '..', 'native_lib/native.so')
     mylib_so = mylib_ffi.dlopen(native_lib_path, 1)
     return(mylib_so)
 

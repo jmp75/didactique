@@ -51,4 +51,19 @@ solved via sdding `nuget Microsoft.NET.Test.Sdk` to paket.dependencies and proj 
 I cannot see any test in VS Test Explorer. It seems another nuget package dependency is needed... [dotnet-test-nunit](https://www.nuget.org/packages/dotnet-test-nunit/)
 
 
+Looking into porting dynamic-interop-dll  to .net standard 2.0.
+
+TIL:
+* paths operations with DirectoryInfo appears to go very wrong in VSCode debug; fullnames seem to double lengths oddly.
+I was utterly confused by the compilation process, sometimes getting complains about Directory.GetParent should be calle as a static method (which I was doing). I stabbed in the dark including removing stuff in ~/.dotnet and ~/.nuget suspecting I had a dodgy System.IO.FileSystem assembly wrecking things. No idea.
+Tried to run unit tests from the command line besides vscode. from vscode, fails with screwed path handling. Command line trying to run specific tests but hard to locate documentation: [there](https://github.com/Microsoft/vstest-docs/blob/master/docs/filter.md)
+
+```bash
+# note the ~ is for contains...
+dotnet test DynamicInterop.Tests/DynamicInterop.Tests.csproj --filter DisplayName~TestNativeObjectReferenceCounting
+```
+
+
+
+
 

@@ -50,5 +50,36 @@ solved via sdding `nuget Microsoft.NET.Test.Sdk` to paket.dependencies and proj 
 
 I cannot see any test in VS Test Explorer. It seems another nuget package dependency is needed... [dotnet-test-nunit](https://www.nuget.org/packages/dotnet-test-nunit/)
 
+note that i need `<TargetFramework>netcoreapp2.0</TargetFramework>` in  dynamicinterop.tests proj file otherwise 
+```
+[7/01/2018 5:57:02 PM Warning] [xUnit.net 00:00:00.7239823] Skipping: DynamicInterop.Tests (Could not find/load any of the following assemblies: xunit.execution.desktop.dll)
+```
+and there are no tests shown in the test explorer. 
 
+
+
+# 2018-01-16
+
+Trying with the prerelease of dynamicinterop
+
+Found that you can override the behavior of `packet restore` (NOT `paket update` !) with a `paket.local` file:
+```
+nuget DynamicInterop -> source c:\local\nuget\ version 0.9.0-alpha.1
+```
+
+[paket local file](https://fsprojects.github.io/Paket/local-file.html) and [this blog](http://theimowski.com/blog/2016/05-19-paket-workflow-for-testing-new-nuget-package-before-release/index.htm)
+
+# 2018-01-28
+
+Trying to work on the fsproj files. Working by inference from e.g. [SQLProvider.Standard.fsproj](https://github.com/fsprojects/SQLProvider/blob/master/src/SQLProvider.Standard/SQLProvider.Standard.fsproj)
+
+
+TIL I use 
+
+```xml
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+```
+but I get the output:
+`netstandard2.0\EngineDisposeTest.dll`
 

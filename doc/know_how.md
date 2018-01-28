@@ -11,3 +11,11 @@ jupyter-nbconvert --to python RunModel.ipynb
 ```
 
 TBC Generating an Rmarkdown file to a notebook ? 
+
+## CI
+
+Have set up CI using Travis and Appveyor for [Dynamic Interop](https://github.com/jmp75/dynamic-interop-dll)
+
+Trying to set up CI on for R.NET:
+
+* [Travis and C#/F# etc.](https://docs.travis-ci.com/user/languages/csharp/)

@@ -19,3 +19,11 @@ Have set up CI using Travis and Appveyor for [Dynamic Interop](https://github.co
 Trying to set up CI on for R.NET:
 
 * [Travis and C#/F# etc.](https://docs.travis-ci.com/user/languages/csharp/)
+
+## Powershell
+
+Diagnosing issues with PowerBuild:
+
+```ps
+Get-InstalledModule -Name "PowerBuild" | Uninstall-Module
+```

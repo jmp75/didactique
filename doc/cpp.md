@@ -70,6 +70,31 @@ Well, this seems to indeed solve that issue.
 ```sh
 make xtest
 make xbenchmark
+# sudo make install
 ```
 
-sudo make install
+## cling
+
+while exploring xtensor ([this post](https://blog.esciencecenter.nl/irregular-data-in-pandas-using-c-88ce311cb9ef)) I came accross [The cling C++ interpreter](https://github.com/root-project/cling). CERN goodie. With a Jupyter Kernel.
+
+```sh
+cd ~/src/tmp/
+mkdir cling
+cd cling
+
+source ~/anaconda3/bin/activate
+my_env_name=cling
+conda create --name ${my_env_name} python=3.6
+conda activate  ${my_env_name}
+
+wget https://raw.githubusercontent.com/root-project/cling/master/tools/packaging/cpt.py
+chmod +x cpt.py
+```
+
+Now go fetch a coffee because the following will take some time. Even scramming all CPUs. For some reasons cpt seems to not try to use llvm/clang stuff from the distro but recompile instead. Also, this will gobble up quite a few GBs of HDD. Like, 24GB when I stopped.
+
+```sh
+./cpt.py --check-requirements && ./cpt.py --create-dev-env Debug --with-workdir=./cling-build/
+```
+
+The cling repo has a jupyter kernel, but there is also the more recent [xeus-cling](https://github.com/QuantStack/xeus-cling). See [this post](https://blog.jupyter.org/interactive-workflows-for-c-with-jupyter-fe9b54227d92) for context.

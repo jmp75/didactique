@@ -103,3 +103,4 @@ ENV/
 *.opendb
 *.ipch
 *.tlog
+.Rproj.user

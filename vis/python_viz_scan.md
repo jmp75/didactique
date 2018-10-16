@@ -62,3 +62,5 @@ pip install -e .
 ```
 
 `AttributeError: module 'pip' has no attribute 'main'`
+
+Contributed to [vaex issue 108](https://github.com/maartenbreddels/vaex/issues/108#issuecomment-429227289). Seems there are ruffled feathers in the community around `pip.main` disappearing.

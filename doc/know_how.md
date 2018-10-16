@@ -2,6 +2,10 @@
 
 A list of things I infrequently use and need howto reminders 
 
+## Unix cmds bloopers
+
+Because I always get it wrong: `ln -s /path/to/dir newlink`, `tar cfv a.tar /path/to/dir`
+
 ## jupyter
 
 Converting a jupyter notebook to a script. At least, on Debian sid which seems to have differnt CLi commands.

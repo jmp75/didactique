@@ -1,6 +1,5 @@
 # Exploring vis. toolets in the Python ecosystem
 
-
 ## ipyvolume
 
 ```sh

@@ -12,6 +12,8 @@ jupyter-nbconvert --to python RunModel.ipynb
 
 TBC Generating an Rmarkdown file to a notebook ? 
 
+Vis R mailing list came across [Jupyter notebooks as Markdown documents, Julia, Python or R scripts](https://github.com/mwouts/jupytext). Cited in this thread, an interesting essay by Yihui Xie, [The First Notebook War](https://yihui.name/en/2018/09/notebook-war/)
+
 ## CI
 
 Have set up CI using Travis and Appveyor for [Dynamic Interop](https://github.com/jmp75/dynamic-interop-dll)

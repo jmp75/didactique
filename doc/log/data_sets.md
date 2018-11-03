@@ -15,3 +15,8 @@ Using File -- Add Data... and the odd open dialog mode, figured out I could open
 Trying in the toolbox AHGT "BoreholeLog to Points". Can select the NGIS_BoreholeLog tabke. 
 
 Fails with a "This tool requires a Subsurface Analyst License". FT.
+
+Trying again, seems to work now.
+Trying to export one of the tables i.e. lithology logs but as text this leads to a 600mb txt file.
+Joining NGIS_bore layer with the lithology logs on the HydroCode but this is unclear what happened. On the NGIS_LithologyLogs in the property panel, tab "joins and relates" has an entry NGIS_BOre now in the "joins" side. The 'fields' tab now has columns lat and lon, and northing/easting.
+

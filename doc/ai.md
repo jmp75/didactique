@@ -15,3 +15,25 @@ conda install --name %env_name% -c pytorch -c fastai fastai pytorch-nightly cuda
 ```
 
 Complains. Looking at [pytorch/pytorch-nightly](https://anaconda.org/pytorch/pytorch-nightly) this appears not available for windows.
+
+## Hands-On Machine Learning with Scikit-Learn and TensorFlow
+
+```cmd
+source ~/anaconda3/bin/activate
+env_name=ML
+conda create --name $env_name python=3.6
+conda activate $env_name
+conda install --name $env_name tensorflow  # Note that I purposely try not to tap into conda-forge and ommit `-c conda-forge` option
+conda install --name $env_name scikit-learn
+conda install --name $env_name ipykernel
+
+python -m ipykernel install --user --name $env_name --display-name "Python3 (ML)"
+
+conda install -n $env_name jupyterlab jupyterlab_launcher
+conda install -n $env_name matplotlib
+
+## jupyter-labextension  install @jupyter-widgets/jupyterlab-manager
+
+cd ~/src/github/handson-ml
+jupyter-lab
+```

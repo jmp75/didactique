@@ -29,12 +29,13 @@ conda search tensorflow-gpu
 conda install --name %env_name% tensorflow-gpu
 ```
 
+```sh
 git clone git@github.com:ageron/handson-ml.git
-
+```
 
 ## Hands-On Machine Learning with Scikit-Learn and TensorFlow
 
-```cmd
+```sh
 source ~/anaconda3/bin/activate
 env_name=ML
 conda create --name $env_name python=3.6
@@ -53,7 +54,7 @@ conda install -n $env_name matplotlib
 cd ~/src/github/handson-ml
 jupyter-lab
 ```
+
 ## Practical Text Classification With Python and Keras
 
-Found [this tutorial](https://realpython.com/python-keras-text-classification/) from Francois Chollet's tweet. Decided to give a spin to [google colaboratory](https://colab.research.google.com). Note that I logged in with an @csiro.au account - not sure this was the same as my .it one. Oops credentials. 
-```
+Found [this tutorial](https://realpython.com/python-keras-text-classification/) from Francois Chollet's tweet. Decided to give a spin to [google colaboratory](https://colab.research.google.com). Note that I logged in with an @csiro.au account - not sure this was the same as my .it one. Oops credentials.

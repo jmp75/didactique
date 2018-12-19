@@ -37,3 +37,7 @@ conda install -n $env_name matplotlib
 cd ~/src/github/handson-ml
 jupyter-lab
 ```
+
+## Practical Text Classification With Python and Keras
+
+Found [this tutorial](https://realpython.com/python-keras-text-classification/) from Francois Chollet's tweet. Decided to give a spin to [google colaboratory](https://colab.research.google.com). Note that I logged in with an @csiro.au account - not sure this was the same as my .it one. Oops credentials. 

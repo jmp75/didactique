@@ -33,3 +33,21 @@ Diagnosing issues with PowerBuild:
 ```ps
 Get-InstalledModule -Name "PowerBuild" | Uninstall-Module
 ```
+
+## Python packaging for pypi
+
+started [refcount](https://github.com/jmp75/pyrefcount) since there seems to be no equivalent out there. Looking in  a pretty good shape based on prior work so may as well go ahead and get a spot on pipy
+
+reading [a blog by jetbrains](https://blog.jetbrains.com/pycharm/2017/05/how-to-publish-your-package-on-pypi/)
+
+using the test pipy repo first. 
+
+[CI using appveyor](https://github.com/AndrewAnnex/SpiceyPy/blob/master/appveyor.yml)
+
+reading pypa guidelines
+
+using conda for enb rather than pip though:
+
+`conda install  wheel twine six pytest`
+
+Looking all right on Windows but I may want to continue testing from Linux. Need to adjust unit tests also.

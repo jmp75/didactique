@@ -16,6 +16,22 @@ conda install --name %env_name% -c pytorch -c fastai fastai pytorch-nightly cuda
 
 Complains. Looking at [pytorch/pytorch-nightly](https://anaconda.org/pytorch/pytorch-nightly) this appears not available for windows.
 
+## tensorflow
+
+Hands on ML book
+
+```cmd
+py3env
+set env_name=AI
+conda activate %env_name%
+REM pip3 install --upgrade tensorflow
+conda search tensorflow-gpu
+conda install --name %env_name% tensorflow-gpu
+```
+
+git clone git@github.com:ageron/handson-ml.git
+
+
 ## Hands-On Machine Learning with Scikit-Learn and TensorFlow
 
 ```cmd
@@ -37,7 +53,7 @@ conda install -n $env_name matplotlib
 cd ~/src/github/handson-ml
 jupyter-lab
 ```
-
 ## Practical Text Classification With Python and Keras
 
 Found [this tutorial](https://realpython.com/python-keras-text-classification/) from Francois Chollet's tweet. Decided to give a spin to [google colaboratory](https://colab.research.google.com). Note that I logged in with an @csiro.au account - not sure this was the same as my .it one. Oops credentials. 
+```

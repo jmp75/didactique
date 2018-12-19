@@ -44,10 +44,64 @@ using the test pipy repo first.
 
 [CI using appveyor](https://github.com/AndrewAnnex/SpiceyPy/blob/master/appveyor.yml)
 
-reading pypa guidelines
+reading [pypa guidelines ](https://packaging.python.org/tutorials/packaging-projects/#packaging-your-project)
 
 using conda for enb rather than pip though:
 
 `conda install  wheel twine six pytest`
 
 Looking all right on Windows but I may want to continue testing from Linux. Need to adjust unit tests also.
+
+```sh
+cd ~/src/github_jm/pyrefcount$
+python3 setup.py sdist bdist_wheel
+```
+
+`twine upload --repository-url https://test.pypi.org/legacy/ dist/*`:
+
+```
+Uploading distributions to https://test.pypi.org/legacy/
+Enter your username: xxxyyy
+Enter your password:
+Uploading refcount-0.5.0-py2.py3-none-any.whl
+100%|###########################################################################################################################################################################################################################| 19.2k/19.2k [00:02<00:00, 6.64kB/s]
+ValueError: Unknown distribution format: 'refcount-0.5.0.tar'
+```
+
+Well why is twine leaving the twine file then?  `rm dist/refcount-0.5.0.tar`  then things look OK.
+
+Uploads, however the description is looking in raw markdown. install pypandoc to try to convert to rst for building the wheel. `conda install pypandoc`
+
+```sh
+rm dist/*
+python3 setup.py sdist bdist_wheel
+rm dist/*.tar
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+```
+
+Once the html commented sections of the markdown file (`<!-- blahblah. -->`) are removed, the descrption is [rendered well](https://test.pypi.org/project/refcount/0.5.0.2).
+
+### Test installation
+
+```sh
+my_env_name=testpypirefcount
+conda create --name ${my_env_name} python=3.6
+conda activate ${my_env_name}
+python3 -m pip install --index-url https://test.pypi.org/simple/ refcount
+```
+
+complains not finding a suitable cffi.  `pip search cffi | less` shows a suitable version of cffi. Trying `pip search --i https://test.pypi.org/simple/ cffi | less` but `405 Client Error: Method Not Allowed for url: https://test.pypi.org/simple/`
+
+Interestingly and not obviously `pip search -i https://test.pypi.org/pypi cffi | less` works and indeed no cffi pkg there. 
+
+OK, pragmatically: `conda install cffi`
+`python3 -m pip install --index-url https://test.pypi.org/simple/ refcount` Opa! installs. Can load objects from modules.
+
+Time to claim the spot:
+
+```sh
+rm dist/*
+python3 setup.py sdist bdist_wheel
+rm dist/*.tar
+twine upload dist/*
+```

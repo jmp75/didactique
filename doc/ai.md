@@ -15,3 +15,18 @@ conda install --name %env_name% -c pytorch -c fastai fastai pytorch-nightly cuda
 ```
 
 Complains. Looking at [pytorch/pytorch-nightly](https://anaconda.org/pytorch/pytorch-nightly) this appears not available for windows.
+
+## tensorflow
+
+Hands on ML book
+
+```cmd
+py3env
+set env_name=AI
+conda activate %env_name%
+REM pip3 install --upgrade tensorflow
+conda search tensorflow-gpu
+conda install --name %env_name% tensorflow-gpu
+```
+
+git clone git@github.com:ageron/handson-ml.git

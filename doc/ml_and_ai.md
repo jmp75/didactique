@@ -58,3 +58,9 @@ jupyter-lab
 ## Practical Text Classification With Python and Keras
 
 Found [this tutorial](https://realpython.com/python-keras-text-classification/) from Francois Chollet's tweet. Decided to give a spin to [google colaboratory](https://colab.research.google.com). Note that I logged in with an @csiro.au account - not sure this was the same as my .it one. Oops credentials.
+
+## Tensorflow explorations
+
+### 2018-12
+
+Tensorflow 2.0 is on the roadmap, but there does not seem to be a way to install it as such (seems some options in 1.12 generate code for 2.0 API however). Still, better stick to [tutorials](https://www.tensorflow.org/tutorials)

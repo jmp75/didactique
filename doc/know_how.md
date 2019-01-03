@@ -8,7 +8,7 @@ Because I always get it wrong: `ln -s /path/to/dir newlink`, `tar cfv a.tar /pat
 
 ## jupyter
 
-Converting a jupyter notebook to a script. At least, on Debian sid which seems to have differnt CLi commands.
+Converting a jupyter notebook to a script. At least, on Debian sid which seems to have differnt CLI commands.
 
 ```sh
 jupyter-nbconvert --to python RunModel.ipynb
@@ -53,7 +53,7 @@ using conda for enb rather than pip though:
 Looking all right on Windows but I may want to continue testing from Linux. Need to adjust unit tests also.
 
 ```sh
-cd ~/src/github_jm/pyrefcount$
+cd ~/src/github_jm/pyrefcount
 python3 setup.py sdist bdist_wheel
 ```
 

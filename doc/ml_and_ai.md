@@ -64,3 +64,36 @@ Found [this tutorial](https://realpython.com/python-keras-text-classification/) 
 ### 2018-12
 
 Tensorflow 2.0 is on the roadmap, but there does not seem to be a way to install it as such (seems some options in 1.12 generate code for 2.0 API however). Still, better stick to [tutorials](https://www.tensorflow.org/tutorials)
+
+## LSTM for water yield modelling
+
+### 2019-01
+
+Exploring [https://github.com/kratzert/AGU2018](https://github.com/kratzert/AGU2018)
+
+```sh
+cd ~/src/github/AGU2018-master
+source ~/anaconda3/bin/activate
+my_env_name=LSTM
+conda create --name ${my_env_name} python=3.6
+conda activate  ${my_env_name}
+
+conda install pytorch pandas numpy scipy matplotlib scikit-learn numba tqdm
+```
+
+`pip install tensorboardX` 
+
+what is `tydm` ? cannot find anything relevant.  That was actually `tqdm`
+
+Loading data: seems it may have changed. looking for _str:'/home/per202/data/basin_timeseries_v1p2_metForcing_obsFlow/basin_mean_forcing/daymet' but this is '/home/per202/data/basin_timeseries_v1p2_metForcing_obsFlow/basin_dataset_public/basin_mean_forcing/daymet/' and this may be superseeded by  home/per202/data/basin_timeseries_v1p2_metForcing_obsFlow/basin_dataset_public_v1p2/basin_mean_forcing/daymet/
+
+`rm -rf /home/per202/src/github/AGU2018-master/code/results` before rerunning.
+
+Unexpectly (tersorboardX should have been diisabled)
+
+```
+Exception has occurred: AttributeError
+'PosixPath' object has no attribute 'split'
+```
+Ah! python...
+

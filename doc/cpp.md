@@ -13,17 +13,21 @@ git clone git@github.com:QuantStack/xtensor.git
 
 ```sh
 cd ~/src/github/xtl/
-mkdir build
+mkdir -p build
 cd build
+rm -rf ../build/*
 cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+make
 sudo make install
 ```
 
 ```sh
 cd ~/src/github/xsimd/
-mkdir build
+mkdir -p build
 cd build
+rm -rf ../build/*
 cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+make
 sudo make install
 ```
 
@@ -33,8 +37,9 @@ sudo make install
 sudo apt-get install libgtest-dev
 
 cd ~/src/github/xtensor/
-mkdir build
+mkdir -p build
 cd build
+#rm -rf ../build/*
 # cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
 cmake -DBUILD_TESTS=ON  -DCMAKE_INSTALL_PREFIX=/usr/local -DGTEST_SRC_DIR=/usr/include/gtest -DXTENSOR_USE_XSIMD=ON ..
 ```
@@ -50,6 +55,10 @@ Note the `BUILD_BENCHMARK` option, which may not be correctly documented in the 
 
 ```sh
 cmake -DBUILD_TESTS=ON -DBUILD_BENCHMARK=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DDOWNLOAD_GTEST=ON -DXTENSOR_USE_XSIMD=ON ..
+```
+
+```sh
+cmake -DBUILD_TESTS=OFF -DBUILD_BENCHMARK=OFF -DCMAKE_INSTALL_PREFIX=/usr/local -DXTENSOR_USE_XSIMD=ON _DXTENSOR_USE_TBB=ON ..
 ```
 
 ```txt
@@ -71,6 +80,16 @@ Well, this seems to indeed solve that issue.
 make xtest
 make xbenchmark
 # sudo make install
+```
+
+## getting started docco
+
+[getting_started first example](https://xtensor.readthedocs.io/en/latest/getting_started.html#first-example )
+
+```text
+~/src/tmp/xtensor/first_example/build$ make
+[ 50%] Linking CXX executable first_example
+/usr/bin/ld: cannot find -lxsimd
 ```
 
 ## cling

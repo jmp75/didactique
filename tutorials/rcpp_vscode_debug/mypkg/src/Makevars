@@ -1,0 +1,3 @@
+
+DBG_FLAGS=-Wall -pedantic -g -Og -UNDEBUG -ggdb
+PKG_CPPFLAGS = $(DBG_FLAGS)

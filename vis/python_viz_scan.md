@@ -63,3 +63,18 @@ pip install -e .
 `AttributeError: module 'pip' has no attribute 'main'`
 
 Contributed to [vaex issue 108](https://github.com/maartenbreddels/vaex/issues/108#issuecomment-429227289). Seems there are ruffled feathers in the community around `pip.main` disappearing.
+
+## Panel
+
+[Panel](https://panel.pyviz.org/) released. See what we can do with this, with a view to assess it for ens sstreamflow forecasting and ela with pyvista
+
+Using my ELA environment
+
+```sh
+pip install -U panel
+jupyter-labextension install @pyviz/jupyterlab_pyviz
+pip install hvplot
+```
+
+
+

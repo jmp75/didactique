@@ -105,3 +105,11 @@ python3 setup.py sdist bdist_wheel
 rm dist/*.tar
 twine upload dist/*
 ```
+
+## Batch removing spaces from files
+
+Something like:
+
+```sh
+find . -type f -name "* *.csv" -exec bash -c 'mv "$0" "${0// /_}"' {} \;
+```

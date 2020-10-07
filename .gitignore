@@ -104,3 +104,4 @@ ENV/
 *.ipch
 *.tlog
 .Rproj.user
+.vscode/

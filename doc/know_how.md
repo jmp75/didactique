@@ -14,7 +14,7 @@ Converting a jupyter notebook to a script. At least, on Debian sid which seems t
 jupyter-nbconvert --to python RunModel.ipynb
 ```
 
-TBC Generating an Rmarkdown file to a notebook ? 
+TBC Generating an Rmarkdown file to a notebook ?
 
 Vis R mailing list came across [Jupyter notebooks as Markdown documents, Julia, Python or R scripts](https://github.com/mwouts/jupytext). Cited in this thread, an interesting essay by Yihui Xie, [The First Notebook War](https://yihui.name/en/2018/09/notebook-war/)
 
@@ -113,3 +113,20 @@ Something like:
 ```sh
 find . -type f -name "* *.csv" -exec bash -c 'mv "$0" "${0// /_}"' {} \;
 ```
+
+## Visual Studio debug visualizer
+
+Trying to have a debug help on that front for nested hupercube parameterizers. These are essentially forms of dictionaries, really, so would like a flattened, dict like vuew of them for debugging. 
+
+```c++
+		class HyperCubeParameterizer : public Parameterizer, public KeyValueConfiguration
+        {
+            // for instance:
+			virtual double GetMinValue(const string &paramName) const = 0;
+			virtual double GetMaxValue(const string &paramName) const = 0;
+        }
+```
+
+[Create custom views of data in the Visual Studio debugger (C#, Visual Basic, C++)](https://docs.microsoft.com/en-us/visualstudio/debugger/viewing-data-in-the-debugger?view=vs-2017)
+
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\Packages\Debugger\Visualizers"; tried to infer from stl.natvis. Also already had authored some for uchronia time series

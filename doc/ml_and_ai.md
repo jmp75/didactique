@@ -1,5 +1,24 @@
 # AI/ML things
 
+## 2019-03 tensorflow2
+
+Installing CUDA to try to use the gpu enabled of tensorflow. Beware [not to install CUDA 10.1 though](https://github.com/tensorflow/tensorflow/issues/27020#issuecomment-478203255)
+
+```cmd
+pip install tensorflow-gpu==2.0.0-alpha0
+```
+
+cmd launched as administrator:
+
+```cmd
+cd C:\Users\per202\Downloads\cuda
+cp cuda\bin\cudnn64_7.dll "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin"
+cp cuda\include\cudnn.h "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include"
+cp cuda\lib\x64\cudnn.lib "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64"
+```
+
+trying to load tensorflow2, this time `No module named 'numpy.core._multiarray_umath'`  seems to be python package SNAFU [need to reinstall conda's numpy...](https://github.com/numpy/numpy/issues/12977#issuecomment-466455068)
+
 ## fastai
 
 Investigating [fastai](http://docs.fast.ai) that builds on pytorch, after picking up a news item at The Register.

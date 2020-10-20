@@ -106,6 +106,14 @@ rm dist/*.tar
 twine upload dist/*
 ```
 
+## Batch removing spaces from files
+
+Something like:
+
+```sh
+find . -type f -name "* *.csv" -exec bash -c 'mv "$0" "${0// /_}"' {} \;
+```
+
 ## Visual Studio debug visualizer
 
 Trying to have a debug help on that front for nested hupercube parameterizers. These are essentially forms of dictionaries, really, so would like a flattened, dict like vuew of them for debugging. 

@@ -4,7 +4,7 @@ import numpy as np
 
 root_src = os.path.dirname(__file__)
 
-sys.path.append(os.path.join(root_src, 'minimal'))
+sys.path.insert(0, os.path.join(root_src, 'minimal'))
 import mypypkg
 from mypypkg.wrap.low_level import mylib_ffi
 

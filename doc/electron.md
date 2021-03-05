@@ -1,5 +1,23 @@
 ## Exploring Electron
 
+### Diagnosing a deployed installation
+
+Context: SVG diagram displays nicely when using `yarn dev` but blank in the packaged app. DEBUG_PROD and another environment variable should give access to the dev tools, but not. Tried a few things from SO but no luck.
+Instead found that it is possible to start the app from the command line with a command line and remote debugger on a given port. Then inspect from a Google Chrome window. Worked a treat.
+
+```bat
+cd %localappdata%\Programs\waa-application
+cd "resources"
+ls *.asar
+```
+
+```bat
+C:\src\csiro\stash\electron-waa\node_modules\.bin\asar.cmd --help
+C:\src\csiro\stash\electron-waa\node_modules\.bin\asar.cmd list app.asar
+```
+
+### Starting
+
 ```sh
 git clone https://github.com/electron/electron-quick-start
 cd electron-quick-start

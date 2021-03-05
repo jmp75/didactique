@@ -1,0 +1,19 @@
+name: shyft
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9
+  - numpy
+  - openssl
+  - pyyaml
+  - netcdf4
+  - gdal
+  - matplotlib
+  - requests
+  - nose
+  - coverage
+  - shapely
+  - pyproj
+  - jupyterlab
+  - pip
+

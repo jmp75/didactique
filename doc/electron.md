@@ -1,4 +1,4 @@
-## Explorint Electron
+## Exploring Electron
 
 ```sh
 git clone https://github.com/electron/electron-quick-start

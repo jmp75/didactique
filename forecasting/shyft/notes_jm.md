@@ -177,8 +177,47 @@ CMake Warning at cpp/shyft/energy_market/ui/CMakeLists.txt:22 (add_library):
 `conda deactivate` till no env. need to clean cmake from cached dirs but then seems to work.
 
 ```
-make -j 6 install
+make -j 6 install > log.txt 2>&1
 ```
 
 Still getting the same issue with boost serialisation
+
+Trying for Jupyter notebook. activating conda shyft env. 
+
+```sh
+cd $WORKSPACE/shyft-doc
+python
+```
+
+```py
+import shyft
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# ModuleNotFoundError: No module named 'shyft'
+```
+
+make install probably failed before deploying the python module. 
+
+`python setup.py develop` not working, `python setup.py build_ext --inplace` same negative outcome:
+
+```text
+Building Shyft Open Source in /home/per202/workspace/shyft, cwd=/home/per202/workspace/shyft
+VERSION file:4.20.24
+One or more extension modules needs build, attempting auto build
+shyft/api/_api.so: needs rebuild
+shyft/energy_market/core/_core.so: needs rebuild
+shyft/energy_market/ltm/_ltm.so: needs rebuild
+shyft/energy_market/stm/_stm.so: needs rebuild
+shyft/time_series/_time_series.so: needs rebuild
+shyft/api/pt_st_k/_pt_st_k.so: needs rebuild
+shyft/api/pt_gs_k/_pt_gs_k.so: needs rebuild
+shyft/api/pt_hs_k/_pt_hs_k.so: needs rebuild
+shyft/api/pt_hps_k/_pt_hps_k.so: needs rebuild
+shyft/api/pt_ss_k/_pt_ss_k.so: needs rebuild
+shyft/api/r_pm_gs_k/_r_pm_gs_k.so: needs rebuild
+shyft/api/hbv_stack/_hbv_stack.so: needs rebuild
+shyft/energy_market/stm/shop/_shop.so: needs rebuild
+build_support/build_shyft.sh: 6: set: Illegal option -o pipefail
+Problems compiling shyft, try building with the build_api.sh or build_api_cmake.sh (Linux only) script manually...
+```
 

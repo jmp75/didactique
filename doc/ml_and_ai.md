@@ -296,3 +296,16 @@ https://stackoverflow.com/a/42405657  and I see that while the nvidia cuda drive
  "language": "python"
 }
 ```
+
+## 2021-04
+
+Looking at replacing laptop; can i hope to spec up graphics card for deep learning ? I am not a hardware guy, but one needs to dive into this a bit for DL AI. 
+
+Good resources:
+
+[Which GPU(s) to Get for Deep Learning: My Experience and Advice for Using GPUs in Deep Learning](https://timdettmers.com/2020/09/07/which-gpu-for-deep-learning/)
+
+Basically, GeForce RTX 3070 3080 3090 are the go, but implied for desktop not laptop. high end RTX gpus for laptops do have things like tensor cores, but less. Other specs incl mem bandwidth appear lower too.
+
+At any rate, for available options I can have quadro rtx at best, on laptops. Also, chip shortages on rtx 3080.
+

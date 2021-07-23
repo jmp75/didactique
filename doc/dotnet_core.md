@@ -1,4 +1,11 @@
+# Log
 
+## 2021-07
+
+Looking at setting up dotnet 5 on a new laptop. Note that I had taken some notes trying to do this for R.NET, on /src/github_jm/rdotnet/docs/dev_notes.md . Ended up using snap to do so, the process was bumpy. as of july 2021 it may better to use the apt repo, hopefully the rough edges are gone.
+
+following instructions on https://docs.microsoft.com/en-us/dotnet/core/install/linux-debian  . At most Debian 10, but I have installed testing (11). Try.
+## Legacy notes
 
 I started to move some projects to .NET core such as [Dynamic Interop](https://github.com/jmp75/dynamic-interop-dll). Cannot locate learning notes if I wrote any, hence this doc.
 
@@ -10,8 +17,6 @@ There is a [portability VS extension](https://marketplace.visualstudio.com/items
 
 I had a look at running rClr on .NET core. Some links:
 [Hosting .NET Core from native code](https://docs.microsoft.com/en-us/dotnet/core/tutorials/netcore-hosting)
-
-# Log
 
 Following the instructions in the MS post, easy upgrade all to 4.6.2, and contrary to dynamic interop, out of the box 100% compat. Woot woot.
 
@@ -67,11 +72,6 @@ Tried to run unit tests from the command line besides vscode. from vscode, fails
 # note the ~ is for contains...
 dotnet test DynamicInterop.Tests/DynamicInterop.Tests.csproj --filter DisplayName~TestNativeObjectReferenceCounting
 ```
-
-
-
-
-
 
 # 2018-01-16
 

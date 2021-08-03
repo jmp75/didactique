@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+# to get a custom '$(Build.BuildNumber)', and 'r' is a counter reset to 1 every change of the major/minor versions
+name: '0.1.$(Rev:r)'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    mkdir -p $(Build.SourcesDirectory)/release
+    touch $(Build.SourcesDirectory)/release/blah_setup_$(Build.BuildNumber).exe
+    touch $(Build.SourcesDirectory)/release/blah_setup_$(Build.BuildNumber).exe.blockmap
+    touch $(Build.SourcesDirectory)/release/latest.yaml
+  displayName: 'Create test build outputs'
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)/release'
+    contents: '**/*.*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: blah_setup_windows

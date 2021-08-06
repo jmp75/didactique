@@ -1,6 +1,5 @@
 # Debian install on new laptop keywest
 
-
 Starting from the [testing (bullseye) version](https://www.debian.org/devel/debian-installer/)
 
 F12 to have a one time boot option. USB boot option appears available. "UEFI: Generic usb flash disk (there is also a partition 2 entry for USB. Using the first only)
@@ -280,3 +279,30 @@ sed -i -e 's/77:88:99:77:88:99/11:22:33:44:55:66/' *
 `systemctl restart NetworkManager`
 
 Hmmm. no not sure that worked. Nope. Need to reenter credentials for eduroam, new profile connection creted. So long, maybe what is needed. 
+
+## Graphics card for AI/ML
+
+Using notes in /home/per202/src/rr-ml/lstm/readme.md  
+
+Using Notes in /home/per202/src/pyela/docs/notes_digital_water.md
+
+HDMI port in meeting rooms: not detected. 
+
+https://www.linuxquestions.org/questions/showthread.php?p=6220826
+
+
+A setup where nouveau drivers are blacklisted. FOr datascience. Is this the way for general graphics config?
+
+`prime-select` is an ubutu package, is this installable on Debian?
+
+if nvidia-settings complains no info:
+
+`optirun -b none nvidia-settings -c :8`
+
+nvidia-detect tells me I should use the 440 series of drivers. Installed however I have 470. 440 is a must???
+
+https://wiki.archlinux.org/title/PRIME
+
+https://wiki.debian.org/NVIDIA%20Optimus  is the RTFM you need to look at first
+
+https://packages.debian.org/search?keywords=nvidia-tesla-440-driver  Huh oh... Seems to be only available on Sid?? yikes. May need to get back there at the bleeding edge. That is despite the documentation refering to bullseye not sid.

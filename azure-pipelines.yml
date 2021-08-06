@@ -25,7 +25,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/release'
-    contents: '*.*'`
+    contents: '*.*'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 #- task: PublishBuildArtifacts@1
 #  inputs:

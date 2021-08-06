@@ -145,7 +145,6 @@ Installing CUDA, now very very important to get version 10.0 exactly for tensorf
 * `sudo apt-get update`
 * `sudo apt-get install cuda`
 
-
 ```text
 The following packages have unmet dependencies:
  cuda : Depends: cuda-10-0 (>= 10.0.130) but it is not going to be installed

@@ -53,7 +53,7 @@ Download the zip snapshot from [electron-react-boilerplate](https://github.com/e
 cd ~/src/tmp/electron-react-boilerplate-next
 ls
 
-ep_src=${HOME}/src/csiro/stash/waa-tests/electron-python
+ep_src=${HOME}/src/waa-tests/electron-python
 mkdir -p ${ep_src}
 
 cd ~/src/tmp/electron-react-boilerplate-next

@@ -25,9 +25,28 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/release'
-    contents: '**/*.*'
+    contents: '*.*'`
     targetFolder: '$(Build.ArtifactStagingDirectory)'
-- task: PublishBuildArtifacts@1
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#    artifactName: blah_setup_windows
+
+#- task: PublishPipelineArtifact@1
+#  inputs:
+#    targetPath: '$(ArtifactPathToPublish)'
+#    artifact: '$(ArtifactName)'
+#    publishLocation: 'pipeline'
+#    fileSharePath: 
+
+- task: UniversalPackages@0
+  displayName: Universal Publish
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: blah_setup_windows
+    command: publish
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    vstsFeedPublish: 'WAA Tool/test_didactic_feed'
+    vstsFeedPackagePublish: 'blah_setup'
+    versionOption: custom
+    versionPublish: '$(Build.BuildNumber)'
+    packagePublishDescription: 'Test universal package'
+

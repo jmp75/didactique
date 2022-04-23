@@ -1,0 +1,77 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+# to get a custom '$(Build.BuildNumber)', and 'r' is a counter reset to 1 every change of the major/minor versions
+name: '0.1.$(Rev:r)'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    mkdir -p $(Build.SourcesDirectory)/release
+    mkdir -p $(Build.SourcesDirectory)/release/somesubdir
+    touch $(Build.SourcesDirectory)/release/blah_setup_$(Build.BuildNumber).exe
+    touch $(Build.SourcesDirectory)/release/blah_setup_$(Build.BuildNumber).exe.blockmap
+    touch $(Build.SourcesDirectory)/release/latest.yaml
+    touch $(Build.SourcesDirectory)/release/somesubdir/noise.yaml
+    mkdir -p $(Build.SourcesDirectory)/version
+    echo $(Build.BuildNumber) > $(Build.SourcesDirectory)/version/version.txt
+  displayName: 'Create test build outputs'
+
+- task: CopyFiles@2
+  displayName: Copy files for installer
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)/release'
+    contents: '*.*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/release'
+
+- task: CopyFiles@2
+  displayName: Copy files for installer version
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)/version'
+    contents: '*.*'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/version'
+
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#    artifactName: blah_setup_windows
+
+#- task: PublishPipelineArtifact@1
+#  inputs:
+#    targetPath: '$(ArtifactPathToPublish)'
+#    artifact: '$(ArtifactName)'
+#    publishLocation: 'pipeline'
+#    fileSharePath: 
+
+- task: UniversalPackages@0
+  displayName: build universal package for installer
+  inputs:
+    command: publish
+    publishDirectory: '$(Build.ArtifactStagingDirectory)/release'
+    vstsFeedPublish: 'WAA Tool/test_didactic_feed'
+    vstsFeedPackagePublish: 'blah_setup'
+    versionOption: custom
+    versionPublish: '$(Build.BuildNumber)'
+    packagePublishDescription: 'Test universal package'
+
+- task: UniversalPackages@0
+  displayName: build universal package for version number
+  inputs:
+    command: publish
+    publishDirectory: '$(Build.ArtifactStagingDirectory)/version'
+    vstsFeedPublish: 'WAA Tool/test_didactic_feed'
+    vstsFeedPackagePublish: 'blah_version'
+    versionOption: custom
+    versionPublish: '$(Build.BuildNumber)'
+    packagePublishDescription: 'Version number for package blah'
+

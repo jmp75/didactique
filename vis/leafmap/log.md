@@ -17,8 +17,9 @@ python -m ipykernel install --user --name bm --display-name "Biomass"
 
 `mamba install leafmap xarray_leaflet -c conda-forge`
 
-pip install arcgis2geojson
+```sh
 
+# pip install arcgis2geojson
 pip install arcgis 
 
-
+```

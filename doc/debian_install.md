@@ -306,3 +306,88 @@ https://wiki.archlinux.org/title/PRIME
 https://wiki.debian.org/NVIDIA%20Optimus  is the RTFM you need to look at first
 
 https://packages.debian.org/search?keywords=nvidia-tesla-440-driver  Huh oh... Seems to be only available on Sid?? yikes. May need to get back there at the bleeding edge. That is despite the documentation refering to bullseye not sid.
+
+## 2022-03
+
+For the past couple of weeks I've had trouble with multihead detection. display ports or HDMI appear not to be detected at all. This started likely after a "sudo apt upgrade". 
+
+Tried to use the previous kernel that is kept as backup, but no difference. 
+
+I also did a Bios firmware upgrade via windows, but after first symptoms so not the most likely culprit.
+
+```text
+eDP-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 382mm x 215mm
+etc etc, but all the rest:
+DP-1 disconnected (normal left inverted right x axis y axis)
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+DP-2 disconnected (normal left inverted right x axis y axis)
+HDMI-2 disconnected (normal left inverted right x axis y axis)
+DP-3 disconnected (normal left inverted right x axis y axis)
+DP-1-1 disconnected (normal left inverted right x axis y axis)
+DP-1-2 disconnected (normal left inverted right x axis y axis)
+DP-1-3 disconnected (normal left inverted right x axis y axis)
+DP-1-0 disconnected (normal left inverted right x axis y axis)
+HDMI-1-0 disconnected (normal left inverted right x axis y axis)
+DP-1-4 disconnected (normal left inverted right x axis y axis)
+DP-1-5 disconnected (normal left inverted right x axis y axis)
+```
+
+Funny thing is that the multiple screen work, but the primary is the laptop, and I have no way to reorder. `arandr` shows only edp1 as a giant screen I think, and am confused as to what is happening anyway.
+
+[Dell Precision 7540](https://www.dell.com/community/XPS/Dell-Precision-7540/td-p/7475946)
+
+
+`sudo dmesg -l err`: 
+
+```
+[drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+```
+
+`sudo journalctl -r -p err`
+
+```
+Mar 15 11:24:04 blahdiblah-bm kernel: [drm:intel_dp_detect [i915]] *ERROR* LSPCON init failed on port D
+Mar 15 11:24:04 blahdiblah-bm kernel: [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+```
+
+`sudo apt install --reinstall linux-image-5.16.0-4-amd64` displayed:
+
+```
+W: Possible missing firmware /lib/firmware/i915/adlp_dmc_ver2_12.bin for module i915
+```
+
+and indeed not there.
+
+[recent post](https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1845009.html)
+
+points to [this server](https://anduin.linuxfromscratch.org/sources/linux-firmware/i915/)
+
+binaries, but looks legit. Compared binary size of previous versios and they match what I have from deb repo. 
+
+```sh
+sudo cp adlp_dmc_ver2_12.bin /lib/firmware/i915/
+sudo chown root /lib/firmware/i915/adlp_dmc_ver2_12.bin 
+sudo chgrp root /lib/firmware/i915/adlp_dmc_ver2_12.bin 
+ls -l /lib/firmware/i915/ad*
+```
+
+`sudo update-initramfs -u` then does not have a warning.
+
+Nope, nope, nothing changed, by and large. May have worked for unknown reasons once or twice as expected, but otherwise nope.
+
+Apr 2022 delete /lib/firmware/i915/adlp_dmc_ver2_12.bin and try to fore reinstall:
+
+```sh
+ sudo apt install --reinstall firmware-misc-nonfree firmware-linux-nonfree 
+```
+
+```text
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8156b-2.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8156a-2.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8153c-1.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8153b-2.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8153a-4.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8153a-3.fw for module r8152
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8153a-2.fw for module r8152
+W: Possible missing firmware /lib/firmware/i915/adlp_dmc_ver2_12.bin for module i915
+```

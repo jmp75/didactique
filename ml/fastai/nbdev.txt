@@ -1,0 +1,12 @@
+# extracted from https://github.com/fastai/nbdev/blob/master/settings.ini
+nbformat>=4.4.0
+nbconvert>=6.1
+pyyaml
+jupyter 
+jupyter_client<8 
+ipykernel 
+ghapi 
+Jinja2<3.1.0
+# fastcore>=1.4.1
+# fastrelease 
+

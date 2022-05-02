@@ -2,7 +2,9 @@
 
 Starting from the [testing (bullseye) version](https://www.debian.org/devel/debian-installer/)
 
+NOTE: Apr 2022 after reinstall I needed to add a cryptic additional boot entry PCI**USB*something*MBR* to have the USB bootable. May be a BIOS upgrade change
 F12 to have a one time boot option. USB boot option appears available. "UEFI: Generic usb flash disk (there is also a partition 2 entry for USB. Using the first only)
+
 
 graphical install, usual
 at first ethernet card not detected; 
@@ -23,7 +25,7 @@ Trying:
 
 ## old laptiop
 
-usermod -a -G sftp_users per202
+/usr/sbin/usermod -a -G sftp_users per202
 
 but seems not to wrk as expected. Not in that group.
 
@@ -306,3 +308,50 @@ https://wiki.archlinux.org/title/PRIME
 https://wiki.debian.org/NVIDIA%20Optimus  is the RTFM you need to look at first
 
 https://packages.debian.org/search?keywords=nvidia-tesla-440-driver  Huh oh... Seems to be only available on Sid?? yikes. May need to get back there at the bleeding edge. That is despite the documentation refering to bullseye not sid.
+
+
+## April 2022
+
+Reinstall a stable version of linux, debian 11.3, from scratch. 
+
+```text
+update-initramfs: Generating /boot/initrd.img-5.10.0-13-amd64
+W: Possible missing firmware /lib/firmware/i915/skl_huc_2.0.0.bin for module i915
+```
+
+```sh
+sudo apt-get install firmware-misc-nonfree 
+
+firmware-iwlwifi
+firmware-linux
+```
+
+```sh
+sudo apt install nvidia-detect
+```
+
+It seems that with debian bullseye, optirun and primusrun are still in play. bookworm appeared to try to do away with it
+
+```
+per202@keywest-bm:~$ optirun nvidia-detect
+[ 1702.483819] [ERROR]You've no permission to communicate with the Bumblebee daemon. Try adding yourself to the 'bumblebee' group
+[ 1702.483868] [ERROR]Could not connect to bumblebee daemon - is it running?
+```
+
+```
+sudo su
+/usr/sbin/usermod -G bumblebee per202
+```
+
+`groups per202` to check
+
+restoring firefox settings:
+
+```sh
+cd ~/mnt/per202/backups
+cp firefox.tar.bz2 ~/.mozilla/
+cd ~/.mozilla/
+rm -rf firefox
+tar -xvjf firefox.tar.bz2
+
+```

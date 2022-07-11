@@ -65,7 +65,7 @@ python3 setup.py sdist bdist_wheel
 
 `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`:
 
-```
+```text
 Uploading distributions to https://test.pypi.org/legacy/
 Enter your username: xxxyyy
 Enter your password:
